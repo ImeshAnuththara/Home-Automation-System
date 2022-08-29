@@ -1,0 +1,92 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	__vector_1
+  18               	__vector_1:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 1F92      		push __zero_reg__
+  22 0002 0F92      		push r0
+  23 0004 0FB6      		in r0,__SREG__
+  24 0006 0F92      		push r0
+  25 0008 1124      		clr __zero_reg__
+  26 000a 8F93      		push r24
+  27               	/* prologue: Signal */
+  28               	/* frame size = 0 */
+  29               	.LM2:
+  30 000c 8091 0000 		lds r24,port
+  31 0010 8095      		com r24
+  32 0012 8093 0000 		sts port,r24
+  33               	.LM3:
+  34 0016 8823      		tst r24
+  35 0018 01F0      		breq .L2
+  36               	.LM4:
+  37 001a AF98      		cbi 53-32,7
+  38 001c 00C0      		rjmp .L4
+  39               	.L2:
+  40               	.LM5:
+  41 001e 80E8      		ldi r24,lo8(-128)
+  42 0020 84BB      		out 52-32,r24
+  43               	.LM6:
+  44 0022 AF9A      		sbi 53-32,7
+  45               	.L4:
+  46               	/* epilogue start */
+  47               	.LM7:
+  48 0024 8F91      		pop r24
+  49 0026 0F90      		pop r0
+  50 0028 0FBE      		out __SREG__,r0
+  51 002a 0F90      		pop r0
+  52 002c 1F90      		pop __zero_reg__
+  53 002e 1895      		reti
+  54               	.LFE6:
+  56               	.global	main
+  58               	main:
+  59               	.LFB7:
+  60               	.LM8:
+  61               	/* prologue: function */
+  62               	/* frame size = 0 */
+  63               	.LM9:
+  64 0030 11BA      		out 49-32,__zero_reg__
+  65               	.LM10:
+  66 0032 88E0      		ldi r24,lo8(8)
+  67 0034 82BB      		out 50-32,r24
+  68               	.LM11:
+  69 0036 80EC      		ldi r24,lo8(-64)
+  70 0038 8BBF      		out 91-32,r24
+  71               	.LM12:
+  72 003a 83E0      		ldi r24,lo8(3)
+  73 003c 85BF      		out 85-32,r24
+  74               	.LM13:
+  75               	/* #APP */
+  76               	 ;  38 "main.c" 1
+  77 003e 7894      		sei
+  78               	 ;  0 "" 2
+  79               	/* #NOAPP */
+  80               	.L6:
+  81 0040 00C0      		rjmp .L6
+  82               	.LFE7:
+  84               	.global	port
+  85               	.global	port
+  86               		.section .bss
+  89               	port:
+  90 0000 00        		.skip 1,0
+ 123               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:2      *ABS*:0000003f __SREG__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:5      *ABS*:00000034 __CCP__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:18     .text:00000000 __vector_1
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:89     .bss:00000000 port
+C:\Users\Imesh\AppData\Local\Temp/ccxDLKnR.s:58     .text:00000030 main
+
+UNDEFINED SYMBOLS
+__do_clear_bss
